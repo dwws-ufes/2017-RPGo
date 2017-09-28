@@ -13,9 +13,9 @@ import javax.enterprise.context.SessionScoped;
 import br.ufes.inf.nemo.jbutler.TextUtils;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.MultiplePersistentObjectsFoundException;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
-import br.ufes.inf.nemo.marvin.core.domain.Academic;
+import br.ufes.inf.nemo.marvin.core.domain.Master;
 import br.ufes.inf.nemo.marvin.core.exceptions.LoginFailedException;
-import br.ufes.inf.nemo.marvin.core.persistence.AcademicDAO;
+import br.ufes.inf.nemo.marvin.core.persistence.MasterDAO;
 
 /**
  * Stateful session bean implementing the session information component. See the implemented interface documentation for
@@ -35,14 +35,14 @@ public class SessionInformationBean implements SessionInformation {
 
 	/** The DAO for Academic objects. */
 	@EJB
-	private AcademicDAO academicDAO;
+	private MasterDAO masterDAO;
 
 	/** The current user logged in. */
-	private Academic currentUser;
+	private Master currentUser;
 
 	/** @see br.org.feees.sigme.core.application.SessionInformation#getCurrentUser() */
 	@Override
-	public Academic getCurrentUser() {
+	public Master getCurrentUser() {
 		return currentUser;
 	}
 
@@ -52,7 +52,11 @@ public class SessionInformationBean implements SessionInformation {
 		try {
 			// Obtains the user given the e-mail address (that serves as username).
 			logger.log(Level.FINER, "Authenticating user with username \"{0}\"...", username);
-			Academic user = academicDAO.retrieveByEmail(username);
+			Master user;
+			if (username.contains("@"))
+				user = masterDAO.retrieveByEmail(username);
+			else
+				user = masterDAO.retrieveByUsername(username);
 
 			// Creates the MD5 hash of the password for comparison.
 			String md5pwd = TextUtils.produceMd5Hash(password);
@@ -71,7 +75,7 @@ public class SessionInformationBean implements SessionInformation {
 				Date now = new Date(System.currentTimeMillis());
 				logger.log(Level.FINER, "Setting last login date for academic with username \"{0}\" as \"{1}\"...", new Object[] { currentUser.getEmail(), now });
 				currentUser.setLastLoginDate(now);
-				academicDAO.save(currentUser);
+				masterDAO.save(currentUser);
 			}
 			else {
 				// Passwords don't match.

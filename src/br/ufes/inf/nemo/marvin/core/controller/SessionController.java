@@ -15,6 +15,7 @@ import br.ufes.inf.nemo.jbutler.ejb.controller.JSFController;
 import br.ufes.inf.nemo.marvin.core.application.CoreInformation;
 import br.ufes.inf.nemo.marvin.core.application.SessionInformation;
 import br.ufes.inf.nemo.marvin.core.domain.Academic;
+import br.ufes.inf.nemo.marvin.core.domain.Master;
 import br.ufes.inf.nemo.marvin.core.exceptions.LoginFailedException;
 
 /**
@@ -80,7 +81,7 @@ public class SessionController extends JSFController {
 	 * 
 	 * @return The Academic object that represents the user that has been authenticated in this session.
 	 */
-	public Academic getCurrentUser() {
+	public Master getCurrentUser() {
 		return sessionInformation.getCurrentUser();
 	}
 

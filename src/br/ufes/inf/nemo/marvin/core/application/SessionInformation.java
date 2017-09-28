@@ -4,7 +4,7 @@ import java.io.Serializable;
 
 import javax.ejb.Local;
 
-import br.ufes.inf.nemo.marvin.core.domain.Academic;
+import br.ufes.inf.nemo.marvin.core.domain.Master;
 import br.ufes.inf.nemo.marvin.core.exceptions.LoginFailedException;
 
 /**
@@ -21,7 +21,7 @@ public interface SessionInformation extends Serializable {
 	 * 
 	 * @return The Academic object that represents the user that is currently logged in.
 	 */
-	Academic getCurrentUser();
+	Master getCurrentUser();
 
 	/**
 	 * Authenticates a user given her username and password. If the user is correctly authenticated, she should be

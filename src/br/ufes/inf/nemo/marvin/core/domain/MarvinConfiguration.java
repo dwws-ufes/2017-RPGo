@@ -26,7 +26,7 @@ public class MarvinConfiguration extends PersistentObjectSupport {
 
 	/** Acronym of the institution that is using Marvin. */
 	@Basic
-	private String institutionAcronym;
+	private String boardName;
 
 	/** Constructor. */
 	public MarvinConfiguration() {}
@@ -37,8 +37,8 @@ public class MarvinConfiguration extends PersistentObjectSupport {
 	}
 
 	/** Getter for institutionAcronym. */
-	public String getInstitutionAcronym() {
-		return institutionAcronym;
+	public String getBoardName() {
+		return boardName;
 	}
 
 	/** Setter for creationDate. */
@@ -47,7 +47,7 @@ public class MarvinConfiguration extends PersistentObjectSupport {
 	}
 
 	/** Setter for institutionAcronym. */
-	public void setInstitutionAcronym(String institutionAcronym) {
-		this.institutionAcronym = institutionAcronym;
+	public void setBoardName(String boardName) {
+		this.boardName = boardName;
 	}
 }

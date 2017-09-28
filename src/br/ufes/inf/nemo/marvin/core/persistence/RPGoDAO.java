@@ -16,7 +16,7 @@ import br.ufes.inf.nemo.marvin.core.domain.MarvinConfiguration;
  * @see br.ufes.inf.nemo.util.ejb3.persistence.BaseDAO
  */
 @Local
-public interface MarvinConfigurationDAO extends BaseDAO<MarvinConfiguration> {
+public interface RPGoDAO extends BaseDAO<MarvinConfiguration> {
 	/**
 	 * TODO: document this method.
 	 * 

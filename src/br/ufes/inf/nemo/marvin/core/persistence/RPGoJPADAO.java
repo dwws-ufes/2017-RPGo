@@ -28,12 +28,12 @@ import br.ufes.inf.nemo.marvin.core.domain.MarvinConfiguration_;
  * @see br.org.feees.sigme.core.persistence.AttendanceDAO
  */
 @Stateless
-public class MarvinConfigurationJPADAO extends BaseJPADAO<MarvinConfiguration> implements MarvinConfigurationDAO {
+public class RPGoJPADAO extends BaseJPADAO<MarvinConfiguration> implements RPGoDAO {
 	/** Serialization id. */
 	private static final long serialVersionUID = 1L;
 
 	/** The logger. */
-	private static final Logger logger = Logger.getLogger(MarvinConfigurationJPADAO.class.getCanonicalName());
+	private static final Logger logger = Logger.getLogger(RPGoJPADAO.class.getCanonicalName());
 
 	/** The application's persistent context provided by the application server. */
 	@PersistenceContext
@@ -45,7 +45,7 @@ public class MarvinConfigurationJPADAO extends BaseJPADAO<MarvinConfiguration> i
 		return entityManager;
 	}
 
-	/** @see br.org.feees.sigme.core.persistence.MarvinConfigurationDAO#retrieveCurrentConfiguration() */
+	/** @see br.RPGoDAO.feees.sigme.core.persistence.MarvinConfigurationDAO#retrieveCurrentConfiguration() */
 	@Override
 	public MarvinConfiguration retrieveCurrentConfiguration() throws PersistentObjectNotFoundException {
 		logger.log(Level.FINE, "Retrieving current (latest) Marvin configuration...");
@@ -63,7 +63,7 @@ public class MarvinConfigurationJPADAO extends BaseJPADAO<MarvinConfiguration> i
 		List<MarvinConfiguration> result = entityManager.createQuery(cq).getResultList();
 		try {
 			MarvinConfiguration cfg = result.get(0);
-			logger.log(Level.INFO, "Retrieve current configuration returned a MarvinConfiguration with institution \"{0}\" and creation date \"{1}\"", new Object[] { cfg.getInstitutionAcronym(), cfg.getCreationDate() });
+			logger.log(Level.INFO, "Retrieve current configuration returned a RPGoConfiguration with board \"{0}\" and creation date \"{1}\"", new Object[] { cfg.getBoardName(), cfg.getCreationDate() });
 			return cfg;
 		}
 		catch (IndexOutOfBoundsException e) {

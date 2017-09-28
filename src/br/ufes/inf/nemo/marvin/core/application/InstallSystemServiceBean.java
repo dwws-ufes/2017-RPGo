@@ -9,11 +9,11 @@ import javax.ejb.EJB;
 import javax.ejb.Stateless;
 
 import br.ufes.inf.nemo.jbutler.TextUtils;
-import br.ufes.inf.nemo.marvin.core.domain.Academic;
 import br.ufes.inf.nemo.marvin.core.domain.MarvinConfiguration;
+import br.ufes.inf.nemo.marvin.core.domain.Master;
 import br.ufes.inf.nemo.marvin.core.exceptions.SystemInstallFailedException;
-import br.ufes.inf.nemo.marvin.core.persistence.AcademicDAO;
-import br.ufes.inf.nemo.marvin.core.persistence.MarvinConfigurationDAO;
+import br.ufes.inf.nemo.marvin.core.persistence.RPGoDAO;
+import br.ufes.inf.nemo.marvin.core.persistence.MasterDAO;
 
 /**
  * TODO: document this type.
@@ -31,11 +31,11 @@ public class InstallSystemServiceBean implements InstallSystemService {
 
 	/** The DAO for Academic objects. */
 	@EJB
-	private AcademicDAO academicDAO;
+	private MasterDAO masterDAO;
 
 	/** The DAO for MarvinConfiguration objects. */
 	@EJB
-	private MarvinConfigurationDAO marvinConfigurationDAO;
+	private RPGoDAO rPGoDAO;
 
 	/** Global information about the application. */
 	@EJB
@@ -46,7 +46,7 @@ public class InstallSystemServiceBean implements InstallSystemService {
 	 *      br.ufes.inf.nemo.marvin.core.domain.Academic)
 	 */
 	@Override
-	public void installSystem(MarvinConfiguration config, Academic admin) throws SystemInstallFailedException {
+	public void installSystem(MarvinConfiguration config, Master admin) throws SystemInstallFailedException {
 		logger.log(Level.FINER, "Installing system...");
 
 		try {
@@ -62,12 +62,12 @@ public class InstallSystemServiceBean implements InstallSystemService {
 
 			// Saves the administrator.
 			logger.log(Level.FINER, "Persisting admin data...\n\t- Short name = {0}\n\t- Last update date = {1}", new Object[] { admin.getShortName(), admin.getLastUpdateDate() });
-			academicDAO.save(admin);
+			masterDAO.save(admin);
 			logger.log(Level.FINE, "The administrator has been saved: {0} ({1})", new Object[] { admin.getName(), admin.getEmail() });
 
 			// Saves Marvin's configuration.
-			logger.log(Level.FINER, "Persisting configuration data...\n\t- Date = {0}\n\t- Acronym = {1}", new Object[] { config.getCreationDate(), config.getInstitutionAcronym() });
-			marvinConfigurationDAO.save(config);
+			logger.log(Level.FINER, "Persisting configuration data...\n\t- Date = {0}\n\t- Acronym = {1}", new Object[] { config.getCreationDate(), config.getBoardName() });
+			rPGoDAO.save(config);
 			logger.log(Level.FINE, "The configuration has been saved");
 
 			// Reloads the bean that holds the configuration and determines if the system is installed.

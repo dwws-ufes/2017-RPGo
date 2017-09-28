@@ -12,8 +12,8 @@ import javax.inject.Named;
 
 import br.ufes.inf.nemo.jbutler.ejb.controller.JSFController;
 import br.ufes.inf.nemo.marvin.core.application.InstallSystemService;
-import br.ufes.inf.nemo.marvin.core.domain.Academic;
 import br.ufes.inf.nemo.marvin.core.domain.MarvinConfiguration;
+import br.ufes.inf.nemo.marvin.core.domain.Master;
 import br.ufes.inf.nemo.marvin.core.exceptions.SystemInstallFailedException;
 
 /**
@@ -43,7 +43,7 @@ public class InstallSystemController extends JSFController {
 	private InstallSystemService installSystemService;
 
 	/** Input: the administrator being registered during the installation. */
-	private Academic admin = new Academic();
+	private Master admin = new Master();
 
 	/** Input: the repeated password for the admininstrator registration. */
 	private String repeatPassword;
@@ -62,7 +62,7 @@ public class InstallSystemController extends JSFController {
 	}
 
 	/** Getter for admin. */
-	public Academic getAdmin() {
+	public Master getAdmin() {
 		return admin;
 	}
 
@@ -150,7 +150,7 @@ public class InstallSystemController extends JSFController {
 	 */
 	public String saveConfig() {
 		logger.log(Level.FINEST, "Previously received data:\n\t- admin.name = {0}\n\t- admin.email = {1}", new Object[] { admin.getName(), admin.getEmail() });
-		logger.log(Level.FINEST, "Received input data:\n\t- config.institutionAcronym = {0}", config.getInstitutionAcronym());
+		logger.log(Level.FINEST, "Received input data:\n\t- config.boardName = {0}", config.getBoardName());
 
 		// Installs the system.
 		try {

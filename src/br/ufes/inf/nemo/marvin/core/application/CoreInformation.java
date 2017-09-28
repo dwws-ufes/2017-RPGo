@@ -18,7 +18,7 @@ import javax.inject.Named;
 import br.ufes.inf.nemo.jbutler.ResourceUtil;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.exceptions.PersistentObjectNotFoundException;
 import br.ufes.inf.nemo.marvin.core.domain.MarvinConfiguration;
-import br.ufes.inf.nemo.marvin.core.persistence.MarvinConfigurationDAO;
+import br.ufes.inf.nemo.marvin.core.persistence.RPGoDAO;
 
 /**
  * TODO: document this type.
@@ -43,7 +43,7 @@ public class CoreInformation implements Serializable {
 
 	/** The DAO for MarvinConfiguration objects. */
 	@EJB
-	private MarvinConfigurationDAO marvinConfigurationDAO;
+	private RPGoDAO rPGoDAO;
 
 	/** TODO: document this field. */
 	private MarvinConfiguration currentConfig;
@@ -68,7 +68,7 @@ public class CoreInformation implements Serializable {
 
 		// If the system is configured, it's installed.
 		try {
-			currentConfig = marvinConfigurationDAO.retrieveCurrentConfiguration();
+			currentConfig = rPGoDAO.retrieveCurrentConfiguration();
 			systemInstalled = true;
 		}
 		catch (PersistentObjectNotFoundException e) {
