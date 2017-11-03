@@ -26,6 +26,7 @@ public class ManageRPGCharactersController extends CrudController<RPGCharacter> 
 	@Override
 	protected void initFilters() {
 		addFilter(new LikeFilter("manageRPGCharacters.filter.byName", "name", getI18nMessage("msgsCore", "manageRPGCharacters.text.filter.byName")));
+		addFilter(new LikeFilter("manageRPGCharacters.filter.byPlayerName", "playerName", getI18nMessage("msgsCore", "manageRPGCharacters.text.filter.byPlayerName")));
 	}
 
 }

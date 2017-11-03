@@ -17,7 +17,7 @@ public class RPGCharacter_ extends PersistentObjectSupport_ {
 	public static volatile SingularAttribute<RPGCharacter, String> traits;
 	public static volatile SingularAttribute<RPGCharacter, String> conditions;
 	public static volatile SingularAttribute<RPGCharacter, String> horror;
-	public static volatile SingularAttribute<RPGCharacter, String> conviction;
+	public static volatile SingularAttribute<RPGCharacter, Integer> conviction;
 	public static volatile SingularAttribute<RPGCharacter, String> trumps;
 	public static volatile SingularAttribute<RPGCharacter, Date> creationDate;
 	public static volatile SingularAttribute<RPGCharacter, Date> lastUpdateDate;

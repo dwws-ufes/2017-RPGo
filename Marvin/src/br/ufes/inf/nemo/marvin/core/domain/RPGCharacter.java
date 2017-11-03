@@ -8,6 +8,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+//import org.primefaces.model.UploadedFile;
 
 import br.ufes.inf.nemo.jbutler.ejb.persistence.PersistentObjectSupport;
 
@@ -49,13 +50,12 @@ public class RPGCharacter extends PersistentObjectSupport implements Comparable<
 	/** The character's horror. */
 	@Basic
 	@NotNull
-	@Size(max = 200)
 	private String horror;
 	
 	/** The character's conviction. */
 	@Basic
 	@NotNull
-	private String conviction;
+	private Integer conviction;
 	
 	/** The character's trumps. */
 	@Basic
@@ -111,7 +111,7 @@ public class RPGCharacter extends PersistentObjectSupport implements Comparable<
 	public void setConditions(String conditions) {
 		this.conditions = conditions;
 	}
-
+	
 	public String getHorror() {
 		return horror;
 	}
@@ -119,12 +119,12 @@ public class RPGCharacter extends PersistentObjectSupport implements Comparable<
 	public void setHorror(String horror) {
 		this.horror = horror;
 	}
-
-	public String getConviction() {
+	
+	public Integer getConviction() {
 		return conviction;
 	}
 
-	public void setConviction(String conviction) {
+	public void setConviction(Integer conviction) {
 		this.conviction = conviction;
 	}
 
