@@ -3,6 +3,7 @@ package br.ufes.inf.nemo.marvin.core.persistence;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
+import javax.annotation.security.PermitAll;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -23,6 +24,7 @@ import br.ufes.inf.nemo.marvin.core.domain.Academic_;
  * @version 1.0
  */
 @Stateless
+@PermitAll
 public class AcademicJPADAO extends BaseJPADAO<Academic> implements AcademicDAO {
 	/** Serialization id. */
 	private static final long serialVersionUID = 1L;

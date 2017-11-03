@@ -3,9 +3,9 @@ package br.ufes.inf.nemo.marvin.core.application;
 import javax.ejb.Local;
 
 import br.ufes.inf.nemo.jbutler.ejb.application.CrudService;
-import br.ufes.inf.nemo.marvin.core.domain.Character;
+import br.ufes.inf.nemo.marvin.core.domain.RPGCharacter;
 
 @Local
-public interface ManageCharactersService extends CrudService<Character> {
+public interface ManageRPGCharactersService extends CrudService<RPGCharacter> {
 
 }

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE composition PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<ui:composition xmlns="http://www.w3.org/1999/xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:p="http://primefaces.org/ui"
+                xmlns:pt="http://xmlns.jcp.org/jsf/passthrough"
+                xmlns:jsf="http://xmlns.jcp.org/jsf"
+                template="/resources/#{coreInfo.decorator}/decorator.xhtml">
+
+	<ui:define name="title">
+		<h:outputText value="#{msgsCore['manageRPGCharacters.title.create']}" rendered="#{(! manageRPGCharactersController.readOnly) and (manageRPGCharactersController.selectedEntity.id == null)}" />
+		<h:outputText value="#{msgsCore['manageRPGCharacters.title.update']}" rendered="#{(! manageRPGCharactersController.readOnly) and (manageRPGCharactersController.selectedEntity.id != null)}" />
+		<h:outputText value="#{msgsCore['manageRPGCharacters.title.retrieve']}" rendered="#{manageRPGCharactersController.readOnly}" />
+	</ui:define>
+    
+    <ui:define name="description">
+		<h:outputText value="#{msgsCore['manageRPGCharacters.title.create.description']}" rendered="#{(! manageRPGCharactersController.readOnly) and (manageRPGCharactersController.selectedEntity.id == null)}" />
+		<h:outputText value="#{msgsCore['manageRPGCharacters.title.update.description']}" rendered="#{(! manageRPGCharactersController.readOnly) and (manageRPGCharactersController.selectedEntity.id != null)}" />
+		<h:outputText value="#{msgsCore['manageRPGCharacters.title.retrieve.description']}" rendered="#{manageRPGCharactersController.readOnly}" />
+    </ui:define>
+
+	<ui:define name="body">
+		<ui:decorate template="/resources/#{coreInfo.decorator}/form.xhtml">
+			<ui:param name="formName" value="form" />
+			<ui:param name="formLabel" value="#{msgsCore['manageRPGCharacters.form.title']}" />
+
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="playerName" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.playerName']}" />
+				<p:inputText id="playerName" value="#{manageRPGCharactersController.selectedEntity.playerName}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.playerName.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}">
+					<p:ajax event="blur" update="playerNameField" />
+				</p:inputText>
+			</ui:decorate>
+
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="name" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.name']}" />
+				<p:inputText id="name" value="#{manageRPGCharactersController.selectedEntity.name}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.name.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}">
+					<p:ajax event="blur" update="nameField" />
+				</p:inputText>
+			</ui:decorate>
+			
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="impactQuote" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.impactQuote']}" />
+				<p:inputText id="impactQuote" value="#{manageRPGCharactersController.selectedEntity.impactQuote}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.impactQuote.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}">
+					<p:ajax event="blur" update="impactQuoteField" />
+				</p:inputText>
+			</ui:decorate>
+			
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="traits" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.traits']}" />
+				<p:inputTextarea id="traits" value="#{manageRPGCharactersController.selectedEntity.traits}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.traits.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}" rows="6" cols="33">
+					<p:ajax event="blur" update="traitsField" />
+				</p:inputTextarea>
+			</ui:decorate>
+			
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="conditions" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.conditions']}" />
+				<p:inputTextarea id="conditions" value="#{manageRPGCharactersController.selectedEntity.conditions}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.conditions.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}" rows="6" cols="33">
+					<p:ajax event="blur" update="conditionsField" />
+				</p:inputTextarea>
+			</ui:decorate>
+			
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="horror" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.horror']}" />
+				<p:inputText id="horror" value="#{manageRPGCharactersController.selectedEntity.horror}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.horror.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}">
+					<p:ajax event="blur" update="horrorField" />
+				</p:inputText>
+			</ui:decorate>
+			
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="conviction" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.conviction']}" />
+				<p:inputText id="conviction" value="#{manageRPGCharactersController.selectedEntity.conviction}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.conviction.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}">
+					<p:ajax event="blur" update="convictionField" />
+				</p:inputText>
+			</ui:decorate>
+			
+			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
+				<ui:param name="fieldName" value="trumps" />
+				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.trumps']}" />
+    			<p:inputTextarea id="trumps" value="#{manageRPGCharactersController.selectedEntity.trumps}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.trumps.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}" rows="6" cols="33">
+    			<p:ajax event="blur" update="trumpsField" />
+				</p:inputTextarea>
+			</ui:decorate>
+
+			<h:panelGroup rendered="#{! manageRPGCharactersController.readOnly}">
+				<ui:decorate template="/resources/#{coreInfo.decorator}/formbuttonpanel-02.xhtml">
+					<p:commandButton action="#{manageRPGCharactersController.list}" value="#{msgs['jbutler.crud.button.cancel']}" immediate="true" icon="fa fa-fw fa-close" />
+					<p:commandButton action="#{manageRPGCharactersController.save}" value="#{msgs['jbutler.crud.button.save']}" update=":form :globalMessages" icon="fa fa-fw fa-save" />
+				</ui:decorate>
+			</h:panelGroup>
+			<h:panelGroup rendered="#{manageRPGCharactersController.readOnly}">
+				<ui:decorate template="/resources/#{coreInfo.decorator}/formbuttonpanel-01.xhtml">
+					<p:commandButton action="#{manageRPGCharactersController.list}" value="#{msgs['jbutler.crud.button.back']}" immediate="true" icon="fa fa-fw fa-arrow-circle-left" />
+				</ui:decorate>
+			</h:panelGroup>
+		</ui:decorate>
+    </ui:define>
+</ui:composition>

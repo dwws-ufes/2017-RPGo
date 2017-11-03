@@ -8,23 +8,23 @@ import javax.ejb.Stateless;
 
 import br.ufes.inf.nemo.jbutler.ejb.application.CrudServiceBean;
 import br.ufes.inf.nemo.jbutler.ejb.persistence.BaseDAO;
-import br.ufes.inf.nemo.marvin.core.domain.Character;
-import br.ufes.inf.nemo.marvin.core.persistence.CharacterDAO;
+import br.ufes.inf.nemo.marvin.core.domain.RPGCharacter;
+import br.ufes.inf.nemo.marvin.core.persistence.RPGCharacterDAO;
 
 @Stateless
-public class ManageCharactersServiceBean extends CrudServiceBean<Character> implements ManageCharactersService {
+public class ManageRPGCharactersServiceBean extends CrudServiceBean<RPGCharacter> implements ManageRPGCharactersService {
 	private static final long serialVersionUID = 1L;
 	
 	@EJB
-	private CharacterDAO characterDAO;
+	private RPGCharacterDAO rpgCharacterDAO;
 	
 	@Override
-	public BaseDAO<Character> getDAO() {
-		return characterDAO;
+	public BaseDAO<RPGCharacter> getDAO() {
+		return rpgCharacterDAO;
 	}
 
 	@Override
-	protected Character validate(Character newEntity, Character oldEntity) {
+	protected RPGCharacter validate(RPGCharacter newEntity, RPGCharacter oldEntity) {
 		// New characters must have their creation date set.
 		Date now = new Date(System.currentTimeMillis());
 		if (oldEntity == null) newEntity.setCreationDate(now);
