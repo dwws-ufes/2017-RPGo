@@ -43,7 +43,6 @@ public class RPGCharacter extends PersistentObjectSupport implements Comparable<
 	
 	/** The character's conditions. */
 	@Basic
-	@NotNull
 	@Size(max = 2000)
 	private String conditions;
 	
