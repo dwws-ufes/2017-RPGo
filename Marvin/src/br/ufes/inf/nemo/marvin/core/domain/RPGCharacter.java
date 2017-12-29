@@ -28,7 +28,7 @@ public class RPGCharacter extends PersistentObjectSupport implements Comparable<
 	@NotNull
 	@Size(max = 100)
 	private String name;
-	
+
 	/** The character's impact quotation. */
 	@Basic
 	@NotNull

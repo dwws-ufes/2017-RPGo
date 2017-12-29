@@ -22,7 +22,11 @@
     </ui:define>
 
 	<ui:define name="body">
+	
+	    <p:growl id="growl" showDetail="true" sticky="true" />
+	
 		<ui:decorate template="/resources/#{coreInfo.decorator}/form.xhtml">
+			
 			<ui:param name="formName" value="form" />
 			<ui:param name="formLabel" value="#{msgsCore['manageRPGCharacters.form.title']}" />
 
@@ -38,9 +42,10 @@
 				<ui:param name="fieldName" value="name" />
 				<ui:param name="label" value="#{msgsCore['manageRPGCharacters.form.name']}" />
 				<p:inputText id="name" value="#{manageRPGCharactersController.selectedEntity.name}" required="true" pt:placeholder="#{msgsCore['manageRPGCharacters.form.name.placeholder']}" disabled="#{manageRPGCharactersController.readOnly}">
-					<p:ajax event="blur" update="nameField" />
+					<p:ajax event="blur" update="nameField, growl" listener="#{manageRPGCharactersController.suggestDescription}" execute="@this" />
 				</p:inputText>
 			</ui:decorate>
+			
 			
 			<ui:decorate template="/resources/#{coreInfo.decorator}/formfield.xhtml">
 				<ui:param name="fieldName" value="impactQuote" />

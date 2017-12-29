@@ -15,30 +15,27 @@ import org.apache.jena.rdf.model.Literal;
 import br.ufes.inf.nemo.jbutler.ejb.application.CrudService;
 import br.ufes.inf.nemo.jbutler.ejb.application.filters.LikeFilter;
 import br.ufes.inf.nemo.jbutler.ejb.controller.CrudController;
-import br.ufes.inf.nemo.marvin.core.application.ManageRPGCharactersService;
-import br.ufes.inf.nemo.marvin.core.domain.RPGCharacter;
+import br.ufes.inf.nemo.marvin.core.application.ManageRPGLocationsService;
+import br.ufes.inf.nemo.marvin.core.domain.RPGLocation;
 
 @Named
 @SessionScoped
-public class ManageRPGCharactersController extends CrudController<RPGCharacter> {
+public class ManageRPGLocationsController extends CrudController<RPGLocation> {
 	private static final long serialVersionUID = 1L;
 	
-	String webDescription;
-	
 	@EJB
-	private ManageRPGCharactersService manageRPGCharactersService;
+	private ManageRPGLocationsService manageRPGLocationsService;
 	
 	@Override
-	protected CrudService<RPGCharacter> getCrudService() {
-		return manageRPGCharactersService;
+	protected CrudService<RPGLocation> getCrudService() {
+		return manageRPGLocationsService;
 	}
 
 	@Override
 	protected void initFilters() {
-		addFilter(new LikeFilter("manageRPGCharacters.filter.byName", "name", getI18nMessage("msgsCore", "manageRPGCharacters.text.filter.byName")));
-		addFilter(new LikeFilter("manageRPGCharacters.filter.byPlayerName", "playerName", getI18nMessage("msgsCore", "manageRPGCharacters.text.filter.byPlayerName")));
+		addFilter(new LikeFilter("manageRPGLocations.filter.byName", "name", getI18nMessage("msgsCore", "manageRPGLocations.text.filter.byName")));
 	}
-
+	
 	public void suggestDescription() {
 		String name = selectedEntity.getName();
 		System.out.println("Searching for " + name);
@@ -46,7 +43,7 @@ public class ManageRPGCharactersController extends CrudController<RPGCharacter> 
 			String query = "PREFIX dbo: <http://dbpedia.org/ontology/> " 
 					+ "PREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> "
 					+ "SELECT ?desc " + "WHERE { "
-					+ "?x a dbo:FictionalCharacter ; " 
+					+ "?x a dbo:Place ; " 
 					+ "rdfs:label ?name ;" 
 					+ "dbo:abstract ?desc . " 
 					+ "FILTER (?name =\"" + name + "\"@en) " 
@@ -58,7 +55,7 @@ public class ManageRPGCharactersController extends CrudController<RPGCharacter> 
 				Literal literal = querySolution.getLiteral("desc");
 				
 				FacesContext context = FacesContext.getCurrentInstance();
-				
+		       
 				String shortDescription;
 				
 				if(literal.getString().length() > 750) {
@@ -68,10 +65,11 @@ public class ManageRPGCharactersController extends CrudController<RPGCharacter> 
 				else
 					shortDescription = literal.getString();
 				
-		        context.addMessage(null, new FacesMessage("About your character",  "Taken from WEB: " + shortDescription) );
+		        context.addMessage(null, new FacesMessage("About your location",  "Taken from WEB: " + shortDescription) );
 		        
 				System.out.println("Done for " + name + ": " + literal.getValue());
 			}
 		}
-	}	
+	}
+
 }
